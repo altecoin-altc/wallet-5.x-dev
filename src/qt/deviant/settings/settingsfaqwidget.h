@@ -9,11 +9,14 @@
 #ifndef SETTINGSFAQWIDGET_H
 #define SETTINGSFAQWIDGET_H
 
+#include <QDesktopService>
 #include <QDialog>
+#include <QUrl>
 
 class DEVGUI;
 
-namespace Ui {
+namespace Ui
+{
 class SettingsFaqWidget;
 }
 
@@ -30,18 +33,22 @@ public:
         MNCONTROLLER
     };
 
-    explicit SettingsFaqWidget(DEVGUI *parent = nullptr);
+    explicit SettingsFaqWidget(DEVGUI* parent = nullptr);
     ~SettingsFaqWidget();
 
-    void showEvent(QShowEvent *event) override;
+    void showEvent(QShowEvent* event) override;
 
 public Q_SLOTS:
-   void windowResizeEvent(QResizeEvent* event);
-   void setSection(Section _section);
+    void windowResizeEvent(QResizeEvent* event);
+    void setSection(Section _section);
+
+
 private Q_SLOTS:
     void onFaqClicked(const QWidget* const widget);
+    void onLinkClicked();
+
 private:
-    Ui::SettingsFaqWidget *ui;
+    Ui::SettingsFaqWidget* ui;
     Section section = INTRO;
 
     // This needs to be edited if changes are made to the Section enum.
