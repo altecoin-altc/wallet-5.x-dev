@@ -9,7 +9,7 @@
 #ifndef SETTINGSFAQWIDGET_H
 #define SETTINGSFAQWIDGET_H
 
-#include <QDesktopService>
+#include <QDesktopServices>
 #include <QDialog>
 #include <QUrl>
 
