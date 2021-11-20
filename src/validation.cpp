@@ -909,7 +909,7 @@ CAmount GetBlockValue(int nHeight)
         return nBlockValue;
     }
 
-    return nBlockValue;
+    return nSubsidy;
 }
 
 int64_t GetMasternodePayment(int nHeight)

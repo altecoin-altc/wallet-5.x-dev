@@ -96,6 +96,7 @@ bool CheckTransaction(const CTransaction& tx, bool fZerocoinActive, CValidationS
         if (txout.IsEmpty() && !tx.IsCoinBase() && !tx.IsCoinStake())
             return state.DoS(100, false, REJECT_INVALID, "bad-txns-vout-empty");
         if (txout.nValue < 0)
+            LogPrintf("txout.nValue: %s", txout.nValue.ToString());
             return state.DoS(100, false, REJECT_INVALID, "bad-txns-vout-negative");
         if (txout.nValue > consensus.nMaxMoneyOut)
             return state.DoS(100, false, REJECT_INVALID, "bad-txns-vout-toolarge");
