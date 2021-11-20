@@ -4,6 +4,7 @@
 
 #include "tx_verify.h"
 #include "logging.h"
+#include "utilmoneystr.h"
 
 #include "consensus/consensus.h"
 #include "consensus/zerocoin_verify.h"
