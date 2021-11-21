@@ -846,7 +846,7 @@ double ConvertBitsToDouble(unsigned int nBits)
 CAmount GetDevReward(int nHeight)
 {
     int64_t nSubsidy = GetBlockValue(nHeight);
-    CAmount nDevFee = nSubsidy * .1 * COIN;
+    CAmount nDevFee = (nSubsidy * .1) * COIN;
     return nDevFee;
 }
 
@@ -900,13 +900,6 @@ CAmount GetBlockValue(int nHeight)
         nSubsidy = .3 * COIN;
     } else {
         nSubsidy = .25 * COIN;
-    }
-
-    CAmount nMoneySupply = MoneySupply.Get();
-    int64_t nBlockValue = nSubsidy;
-    if ((nMoneySupply + nSubsidy) >= Params().GetConsensus().nMaxMoneyOut) {
-        nBlockValue = 0;
-        return nBlockValue;
     }
 
     return nSubsidy;
