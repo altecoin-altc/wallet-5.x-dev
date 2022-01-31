@@ -278,7 +278,7 @@ public:
     std::string GetRequiredPaymentsString(int nBlockHeight);
     void FillBlockPayee(CMutableTransaction& txNew, const int nHeight, bool fProofOfStake);
     std::string ToString() const;
-    void PushDevFee(CMutableTransaction& txNew, const int nHeight);
+    void PushDevFee(CMutableTransaction& txNew, const int nHeight, CAmount nDevReward);
 
     ADD_SERIALIZE_METHODS;
 

@@ -315,8 +315,6 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const int n
     bool hasPayment = true;
     CScript payee;
 
-    CAmount nDevFee = GetDevReward(nHeight);
-
     //spork
     if (!masternodePayments.GetBlockPayee(nHeight, payee)) {
         //no masternode detected
@@ -329,8 +327,11 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const int n
         }
     }
 
+    CAmount blockValue = GetBlockValue(nHeight);
+    CAmount masternodePayment = GetMasternodePayment(nHeight);
+    CAmount nDevReward = blockValue * .1;
+
     if (hasPayment) {
-        CAmount masternodePayment = GetMasternodePayment(nHeight);
         if (fProofOfStake) {
             /**For Proof Of Stake vout[0] must be null
              * Stake reward can be split into many different outputs, so we must
@@ -340,6 +341,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const int n
             unsigned int i = txNew.vout.size();
             txNew.vout.resize(i + 1);
 
+
             txNew.vout[i].scriptPubKey = payee;
             txNew.vout[i].nValue = masternodePayment;
 
@@ -347,10 +349,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const int n
             if (!txNew.vout[1].IsZerocoinMint()) {
                 if (i == 2) {
                     // Majority of cases; do it quick and move on
-                    txNew.vout[i - 1].nValue -= masternodePayment;
-                    if (nHeight >= 1776000) {
-                        txNew.vout[i - 1].nValue -= nDevFee;
-                    }
+                    txNew.vout[i - 1].nValue -= masternodePayment + nDevReward;
                 } else if (i >= 3) {
                     // special case, stake is split between (i-1) outputs
                     unsigned int outputs = i-1;
@@ -362,18 +361,17 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const int n
                     // in case it's not an even division, take the last bit of dust from the last one
                     txNew.vout[outputs].nValue -= mnPaymentRemainder;
                     if (nHeight >= 1776000) {
-                        CAmount devFeeSplit = nDevFee / outputs;
-                        CAmount devFeeRemainder = nDevFee - (devFeeSplit * outputs);        
+                        CAmount devFeeSplit = nDevReward / outputs;
+                        CAmount devFeeRemainder = nDevReward - (devFeeSplit * outputs);        
                         
                         for (unsigned int j=1; j<=outputs; j++) {
                             txNew.vout[j].nValue -= devFeeSplit;
                         }
                         txNew.vout[outputs].nValue -= devFeeRemainder;
                     }
-
                 }
-                if (nHeight >= 1776000) {
-                    PushDevFee(txNew, nHeight);
+                if (nDevReward > 0) {
+                PushDevFee(txNew, nHeight, nDevReward);
                 }
             }
         } else {
@@ -389,18 +387,17 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const int n
             LogPrint(BCLog::MASTERNODE,"Masternode payment of %s to %s\n", FormatMoney(masternodePayment).c_str(), EncodeDestination(address1).c_str());
     } else {
         unsigned int i = txNew.vout.size();
-        PushDevFee(txNew, nHeight);
-        txNew.vout[i].nValue -= nDevFee;
+        PushDevFee(txNew, nHeight, nDevReward);
+        txNew.vout[i].nValue -= nDevReward;
     }
 }
 
-void CMasternodePayments::PushDevFee(CMutableTransaction& txNew, const int nHeight) 
+void CMasternodePayments::PushDevFee(CMutableTransaction& txNew, const int nHeight, CAmount nDevReward) 
 {
-    CAmount nDevFee = GetDevReward(nHeight);
     CTxDestination destination = DecodeDestination(Params().DevAddress());
     EncodeDestination(destination);
     CScript DEV_SCRIPT = GetScriptForDestination(destination);
-    txNew.vout.push_back(CTxOut(nDevFee, CScript(DEV_SCRIPT.begin(), DEV_SCRIPT.end())));
+    txNew.vout.push_back(CTxOut(nDevReward, CScript(DEV_SCRIPT.begin(), DEV_SCRIPT.end())));
 }
 
 void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::string& strCommand, CDataStream& vRecv)
