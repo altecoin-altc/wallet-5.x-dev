@@ -2,7 +2,7 @@ package=native_rust
 $(package)_version=1.42.0
 $(package)_download_path=https://depends.pivx.org
 $(package)_file_name_x86_64_linux=rust-$($(package)_version)-x86_64-unknown-linux-gnu.tar.gz
-$(package)_sha256_hash_x86_64_linux=5fed7d705e215fc129c4ace8060b5dc1a47e88228ce0249d48f30d769fcb6fe3
+$(package)_sha256_hash_x86_64_linux=fce33280b344ab0fecc55be24632a3c0086fd763f4df1d59013dfc0e49f0356c
 $(package)_file_name_arm_linux=rust-$($(package)_version)-arm-unknown-linux-gnueabihf.tar.gz
 $(package)_sha256_hash_arm_linux=a19a1d46fa08681429d888ec06e127ce94ac16d7d95d3f1ee586a0cac63ffe5b
 $(package)_file_name_armv7l_linux=rust-$($(package)_version)-armv7-unknown-linux-gnueabihf.tar.gz
@@ -29,7 +29,7 @@ $(package)_rust_target_armv7l-unknown-linux-gnueabihf=arm-unknown-linux-gnueabih
 $(package)_rust_std_sha256_hash_arm-unknown-linux-gnueabihf=f91d28115a46eb9af5bb73bb776269534e02add1125346b2dd7e29ecf34da892
  $(package)_rust_std_sha256_hash_aarch64-unknown-linux-gnu=782b2ab52d062ecc7077ddbfff1f21b553ac21845688a75aed45d70214a3c3e7
  $(package)_rust_std_sha256_hash_i686-unknown-linux-gnu=58191b8ccc78bbd288285a8e9b03c5e473ffbdf9d79c7262130202454f17c41f
- $(package)_rust_std_sha256_hash_x86_64-unknown-linux-gnu=016c9619bdbb8023876579ed97ade2f8b049696c2163f7518328b77b2c274f25
+ $(package)_rust_std_sha256_hash_x86_64-unknown-linux-gnu=face97f81c746b884ac9a6062b2ac99b1f4c314199d0a90c57a0adb0a01dcdc8
  $(package)_rust_std_sha256_hash_riscv64gc-unknown-linux-gnu=5496c43c340dfbef0a335498752e4efeff4534ada9a96754d9660be98ae8dc41$(package)_rust_std_sha256_hash_x86_64-apple-darwin=1d61e9ed5d29e1bb4c18e13d551c6d856c73fb8b410053245dc6e0d3b3a0e92c
 $(package)_rust_std_sha256_hash_x86_64-pc-windows-gnu=8a8389f3860df6f42fbf8b76a62ddc7b9b6fe6d0fb526dcfc42faab1005bfb6d
 
