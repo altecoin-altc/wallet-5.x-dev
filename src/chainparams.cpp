@@ -189,7 +189,7 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight         = INT_MAX;
         consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight         = INT_MAX;
         consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight     = INT_MAX;
-        consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight          = 1813000;
+        consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight          = INT_MAX;
         consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight          = 1813020;
         consensus.vUpgrades[Consensus::UPGRADE_V5_0].nActivationHeight          = 1900000;
 
