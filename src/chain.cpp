@@ -261,7 +261,7 @@ void CBlockIndex::SetStakeModifier(const uint256& nStakeModifier)
 void CBlockIndex::SetNewStakeModifier(const uint256& prevoutId)
 {
     // Shouldn't be called on V1 modifier's blocks (or before setting pprev)
-    if (!Params().GetConsensus().NetworkUpgradeActive(nHeight, Consensus::V5_0)) return;
+    if (!Params().GetConsensus().NetworkUpgradeActive(nHeight, Consensus::UPGRADE_V5_0)) return;
     if (!pprev) throw std::runtime_error(strprintf("%s : ERROR: null pprev", __func__));
 
     // Generate Hash(prevoutId | prevModifier) - switch with genesis modifier (0) on upgrade block
