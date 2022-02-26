@@ -191,7 +191,7 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight     = INT_MAX;
         consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight          = INT_MAX;
         consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight          = 1813020;
-        consensus.vUpgrades[Consensus::UPGRADE_V5_0].nActivationHeight          = 1900000;
+        consensus.vUpgrades[Consensus::UPGRADE_V5_0].nActivationHeight          = 2000000;
 
         consensus.vUpgrades[Consensus::UPGRADE_ZC].hashActivationBlock =
                 uint256S("0x000006673841efc8525afb74a6855871bf71c1d1ab6d93cc9d6a45f43bac87b7");
