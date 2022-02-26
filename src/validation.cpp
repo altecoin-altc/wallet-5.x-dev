@@ -3348,7 +3348,9 @@ bool AcceptBlock(const CBlock& block, CValidationState& state, CBlockIndex** ppi
     if (isPoS) {
         std::string strError;
         if (!CheckProofOfStake(block, strError, pindexPrev))
-            return state.DoS(100, error("%s: proof of stake check failed (%s)", __func__, strError));
+            if (Params().GetConsensus().NetworkUpgradeActive(nHeight, Consensus::UPGRADE_V5_0)) {
+                return state.DoS(100, error("%s: proof of stake check failed (%s)", __func__, strError));
+            }
     }
 
     if (!AcceptBlockHeader(block, state, &pindex, pindexPrev))
