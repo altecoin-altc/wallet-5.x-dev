@@ -1748,7 +1748,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 *[cssClass="container-splash"] {
     background-color:transparent;
-    background-image: url("://bg-splash-png");
+    background-image: url("://bg-splash");
 }
 
 *[cssClass="img-splash-logo"] {
