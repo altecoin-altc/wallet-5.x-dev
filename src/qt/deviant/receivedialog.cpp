@@ -31,7 +31,7 @@ ReceiveDialog::ReceiveDialog(QWidget *parent) :
     ui->labelAddress->setProperty("cssClass", "label-address-box");
 
     // QR image
-    QPixmap pixmap(":/res/img/img-qr-test-big.png");
+    QPixmap pixmap(":/deviant/res/img/img-qr-test-big.png");
     ui->labelQrImg->setPixmap(pixmap.scaled(
                                   ui->labelQrImg->width(),
                                   ui->labelQrImg->height(),

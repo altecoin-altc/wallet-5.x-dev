@@ -83,27 +83,27 @@ DEVGUI::DEVGUI(const NetworkStyle* networkStyle, QWidget* parent) :
         QFrame* centralWidget = new QFrame(this);
         this->setMinimumWidth(BASE_WINDOW_MIN_WIDTH);
         this->setMinimumHeight(BASE_WINDOW_MIN_HEIGHT);
-        QHBoxLayout* centralWidgetLayouot = new QHBoxLayout();
-        centralWidget->setLayout(centralWidgetLayouot);
-        centralWidgetLayouot->setContentsMargins(0,0,0,0);
-        centralWidgetLayouot->setSpacing(0);
+        QHBoxLayout* centralWidgetLayout = new QHBoxLayout();
+        centralWidget->setLayout(centralWidgetLayout);
+        centralWidgetLayout->setContentsMargins(0,0,0,0);
+        centralWidgetLayout->setSpacing(0);
 
         centralWidget->setProperty("cssClass", "container");
         centralWidget->setStyleSheet("padding:0px; border:none; margin:0px;");
 
         // First the nav
         navMenu = new NavMenuWidget(this);
-        centralWidgetLayouot->addWidget(navMenu);
+        centralWidgetLayout->addWidget(navMenu);
 
         this->setCentralWidget(centralWidget);
         this->setContentsMargins(0,0,0,0);
 
         QFrame *container = new QFrame(centralWidget);
         container->setContentsMargins(0,0,0,0);
-        centralWidgetLayouot->addWidget(container);
+        centralWidgetLayout->addWidget(container);
 
         // Then topbar + the stackedWidget
-        QVBoxLayout *baseScreensContainer = new QVBoxLayout(this);
+        QVBoxLayout *baseScreensContainer = new QVBoxLayout();
         baseScreensContainer->setMargin(0);
         baseScreensContainer->setSpacing(0);
         baseScreensContainer->setContentsMargins(0,0,0,0);
