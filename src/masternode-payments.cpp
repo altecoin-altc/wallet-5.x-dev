@@ -180,7 +180,7 @@ bool CMasternodePaymentWinner::IsValid(CNode* pnode, std::string& strError)
         return false;
     }
 
-    if(sporkManager.IsSporkActive(SPORK_20_FORCE_ENABLED_MASTERNODE)) {
+    if(sporkManager.IsSporkActive(SPORK_21_FORCE_ENABLED_MASTERNODE)) {
         if (pmn->Status() != "ENABLED") {
             strError = strprintf("Masternode is not in ENABLED state - Status(): %d", pmn->Status());
             LogPrintf("CMasternodePaymentWinner::IsValid - Force masternode requirement to have ENABLED status instead of ACTIVE - %s\n", strError);
