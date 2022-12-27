@@ -982,7 +982,7 @@ UniValue getcollateral(const JSONRPCRequest& request)
             "\nExamples:\n" +
             HelpExampleCli("getcollateral", "") + HelpExampleRpc("getcollateral", ""));
 
-    return GetMNCollateral(chainActive.Height());
+    return 5000;
 }
 
 static const CRPCCommand commands[] =
