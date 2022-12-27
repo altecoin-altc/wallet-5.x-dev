@@ -1002,7 +1002,7 @@ static const CRPCCommand commands[] =
     { "masternode",         "decodemasternodebroadcast", &decodemasternodebroadcast, true  },
     { "masternode",         "relaymasternodebroadcast",  &relaymasternodebroadcast,  true  },
     { "masternode",         "initmasternode",            &initmasternode,            true  },
-    { "masternode",         "getcollateral",             &getcollateral,             true,  {} },
+    { "masternode",         "getcollateral",             &getcollateral,             true  },
 
     /* Not shown in help */
     { "hidden",             "getcachedblockhashes",      &getcachedblockhashes,      true  },
