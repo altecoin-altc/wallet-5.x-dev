@@ -969,6 +969,22 @@ UniValue relaymasternodebroadcast(const JSONRPCRequest& request)
     return strprintf("Masternode broadcast sent (service %s, vin %s)", mnb.addr.ToString(), mnb.vin.ToString());
 }
 
+UniValue getcollateral(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() != 0)
+        throw std::runtime_error(
+            "getcollateral\n"
+            "\nPrint the amount of coins currently required as a masternode collateral\n"
+
+            "\nResult:\n"
+            "\"status\"     (numeric) Masternode collateral value right now\n"
+
+            "\nExamples:\n" +
+            HelpExampleCli("getcollateral", "") + HelpExampleRpc("getcollateral", ""));
+
+    return GetMNCollateral(chainActive.Height());
+}
+
 static const CRPCCommand commands[] =
 { //  category              name                         actor (function)            okSafeMode
   //  --------------------- ---------------------------  --------------------------  ----------
@@ -986,6 +1002,7 @@ static const CRPCCommand commands[] =
     { "masternode",         "decodemasternodebroadcast", &decodemasternodebroadcast, true  },
     { "masternode",         "relaymasternodebroadcast",  &relaymasternodebroadcast,  true  },
     { "masternode",         "initmasternode",            &initmasternode,            true  },
+    { "masternode",         "getcollateral",             &getcollateral,             true,  {} },
 
     /* Not shown in help */
     { "hidden",             "getcachedblockhashes",      &getcachedblockhashes,      true  },
