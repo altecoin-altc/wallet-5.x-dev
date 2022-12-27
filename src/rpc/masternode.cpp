@@ -173,6 +173,8 @@ UniValue listmasternodes(const JSONRPCRequest& request)
         obj.pushKV("lastseen", (int64_t)mn.lastPing.sigTime);
         obj.pushKV("activetime", (int64_t)(mn.lastPing.sigTime - mn.sigTime));
         obj.pushKV("lastpaid", (int64_t)mnodeman.GetLastPaid(s.second, chainTip));
+        obj.pushKV("lastpaidblock", (int64_t)mnodeman.GetLastPaidBlock(s.second, chainTip));
+        obj.pushKV("netaddr", mn.addr.ToString());
 
         ret.push_back(obj);
     }
